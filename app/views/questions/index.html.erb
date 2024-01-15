@@ -1,0 +1,35 @@
+<header>
+  <div class="header-logo">
+    チャットツール
+  </div>
+</header>
+
+<div class="main top-main">
+  <div class="top-message">
+    <h2>周平で、世界はつながる</h2>
+    <p>今の気持ちをつぶやいてみよう！</p>
+        <%= link_to '新規投稿', new_question_path, class: 'custom-button' %>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Name</th>
+        <th>Content</th>
+        <th></th>
+      </tr>
+      <% @questions.each do |question| %>
+      <tr>
+        <td><%= question.id %></td>
+        <td><%= question.title %></td>
+        <td><%= question.name %></td>
+        <td><%= question.content %></td>
+        <td><%= link_to 'もっと見る' , question_path(question), class: 'custom-button-light'%> </td>
+        <td><%= link_to '編集する' , edit_question_path(question), class: 'custom-button-light'%> </td>
+        <td><%= link_to '削除する' , question_path(question),
+            data: { turbo_method: 'delete', turbo_confirm: '本当に削除しますか?' }, class: 'custom-button-light'%></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
